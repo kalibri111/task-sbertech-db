@@ -9,5 +9,5 @@ CA - database:
 По архитектуре реализации повторяет Redis, так что как и он, CP:
 ![img_2.png](img_2.png)
 ## ScyllaDB
-From documentation it realises CP way:
+From documentation it realises AP way:
 ![img_3.png](img_3.png)
