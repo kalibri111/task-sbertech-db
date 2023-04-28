@@ -1,0 +1,48 @@
+version: '3.5'
+services:
+  redis-master:
+    image: 'redis:6.2-alpine'
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - '6370:6370'
+    volumes:
+      - ./docker/redis-master.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      app_subnet:
+        ipv4_address: 172.20.0.30
+  redis-node-1:
+    image: 'redis:6.0-alpine'
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - '6373:6373'
+    volumes:
+      - ./docker/redis-node-1.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      app_subnet:
+        ipv4_address: 172.20.0.31
+  redis-node-2:
+    image: 'redis:6.0-alpine'
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - '6374:6374'
+    volumes:
+      - ./docker/redis-node-2.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      app_subnet:
+        ipv4_address: 172.20.0.32
+  redis-node-3:
+    image: 'redis:6.0-alpine'
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - '6375:6375'
+    volumes:
+      - ./docker/redis-node-3.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      app_subnet:
+        ipv4_address: 172.20.0.33
+networks:
+  app_subnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
